@@ -8,8 +8,8 @@ A Python application that web scrapes BI Tech articles and generates cards of bi
     - url: The url of the article for more information
 
 2. Beauitful Soup is utilized to scrap news information from websites, particularly identifying:
-    - title as <h1 class="post-headline">
-    - bullets as <ul class="summary-list">
+    - title as h1 tags with class="post-headline"
+    - bullets as ul tags with class="summary-list"
 
 The default url for scraping the Tech section of BI website is: http://www.businessinsider.com/sai
 
