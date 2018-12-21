@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>QuickNews</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <style>
+            .card:nth-child(even) {
+                background-color: #00c932;
+                color: white;
+            }
+
+            li {
+                font-weight: bold
+            }
+
+            
+        </style>
+    </head>
+    <body>
+        <div class="jumbotron" style="background-color: #00c932;">
+            <div class="container">
+                <h1 >QuickNews!</h1>
+                <p>Catch up on the latest Tech news from Business Insider!</p>
+            </div>
+        </div>
+        <div class="container p-1">
+            {% for article in news %}
+            <div class="card" style="margin-top:10px;">
+                <div class="card-header border-white">
+                    <h4><a href="{{ article.url }}" target="_blank">{{ article.title}}</a></h4>
+                </div>
+                <div class="card-body">
+                    <ul class="card-text">
+                        {{ article.bullets}}
+                    </ul>
+                </div>
+            </div>
+        {% endfor %}
+
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    
+    </body>
+</html>
