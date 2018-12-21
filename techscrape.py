@@ -41,7 +41,7 @@ def scrape_tech_insider(url='http://www.businessinsider.com/sai'):
     news = []
     for url in article_urls:
         title, bullets = extract_article(url)
-        print(bullets)
+        # print(bullets)
         if title and bullets:
             article = Article(title, bullets, url)
             news.append(article)
