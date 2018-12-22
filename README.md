@@ -1,6 +1,6 @@
 # QuickNews
 
-A Python application that web scrapes BI Tech articles and generates cards of bit-sized information.
+A Python program that web scrapes BI Tech articles and generates cards of bit-sized information.
 
 1. Articles are stored as objects, containing:
     - title: The title of the article
@@ -13,4 +13,6 @@ A Python application that web scrapes BI Tech articles and generates cards of bi
 
 The default url for scraping the Tech section of BI website is: http://www.businessinsider.com/sai
 
-The program loops through all the headlines/articles of the Tech page. Each headline/article contains a url to their respective article, from which the title and bullet summaries are extracted. With Bootstrap 4 and Jinja2, the articles are aggregated as cards on a single viewable page automatically opened.
+The program runs through the headlines/articles of the Tech page. Each headline/article contains a url to their respective article, from which the title and bullet summaries are extracted. With Bootstrap 4 and Jinja2, the articles are aggregated as cards onto a single viewable page automatically opened. 
+
+Running "python quicknews.py" starts the fun...
