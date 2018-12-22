@@ -6,22 +6,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
-            .card:nth-child(even) {
+            .card:nth-child(even), .card:nth-child(even) > div > h4 > a  {
                 background-color: #00c932;
                 color: white;
             }
-
+            .card:nth-child(even) div ul li a {
+                color: black;
+            }
             li {
                 font-weight: bold
             }
 
-            
+            .card:nth-child(odd) > div > h4 > a, .card:nth-child(odd) div ul li a  {
+                color: #00c932;
+            }
         </style>
     </head>
     <body>
         <div class="jumbotron" style="background-color: #00c932;">
             <div class="container">
-                <h1 >QuickNews!</h1>
+                <h1 >QuickNews</h1>
                 <p>Catch up on the latest Tech news from Business Insider!</p>
             </div>
         </div>
