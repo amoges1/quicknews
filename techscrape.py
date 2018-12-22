@@ -24,7 +24,7 @@ def extract_article(url):
     # Not all articles have bullets
     if title and bullets:
         return title.getText(), bullets
-    return title.getText(), "Click to learn more"
+    return title.getText(), "Click above to learn more"
 
 
 def scrape_tech_insider(url='http://www.businessinsider.com/sai'):
