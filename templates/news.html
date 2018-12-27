@@ -6,45 +6,60 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <style>
-            .card:nth-child(even), .card:nth-child(even) > div > h4 > a  {
+            .card-header {
                 background-color: #00c932;
-                color: white;
             }
-            .card:nth-child(even) div ul li a {
-                color: black;
+            .title {
+                line-height: normal;
+            }
+            .title > a  {
+                color: white;
             }
             li {
                 font-weight: bold
             }
 
-            .card:nth-child(odd) > div > h4 > a, .card:nth-child(odd) div ul li a  {
-                color: #00c932;
-            }
         </style>
     </head>
     <body>
         <div class="jumbotron" style="background-color: #00c932;">
             <div class="container">
-                <h1 >QuickNews</h1>
-                <p>Catch up on the latest Tech news from Business Insider!</p>
+                <h1 class="text-white">QuickNews</h1>
+                <p class="text-white"> <em>Catch up on the latest Tech news from Business Insider!</em></p>
             </div>
         </div>
         <div class="container p-1">
-            {% for article in news %}
-            <div class="card" style="margin-top:10px;">
-                <div class="card-header border-white">
-                    <h4><a href="{{ article.url }}" target="_blank">{{ article.title}}</a></h4>
+            <div class="row">
+                {% for article in news %}
+                <div class="col-md-6">
+                    <div class="card" style="margin-top:10px;">
+                        <div class="card-header border-white">
+                            <h4  class="title"><a href="{{ article.url }}" target="_blank">{{ article.title}}</a></h4>
+                        </div>
+                        <div class="card-body">
+                            <ul class="card-text">
+                                {% if "Click above" not in article.bullets %}
+                                    {% for bullet in article.bullets.split(".") %}
+                                        <li> {{ bullet }}</li>
+                                    {% endfor %}
+                                {% else %}
+                                    <li> Click above to learn more</li>
+                                {% endif %}
+                            </ul>
+                        </div>
+                        <div class="card-footer text-right">
+                            <span class="badge badge-warning"> <strong> {{ article.date }} </strong></span>
+                        </div>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <ul class="card-text">
-                        {{ article.bullets}}
-                    </ul>
-                </div>
+            
+                {% endfor %}
             </div>
-        {% endfor %}
-
         </div>
 
+        <footer  style=" left: 0; bottom: 0; width: 100%;  background-color: #00c932; color: white; text-align: center;">
+            <p style="margin:0;">This is a personal project made for fun. All Respective icons and service(s) belong to Respective owners.</p>
+        </footer>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
     
