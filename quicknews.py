@@ -77,7 +77,7 @@ def import_archive(conn):
     news = []
 
     c = conn.cursor()
-    c.execute("SELECT * FROM NEWS")
+    c.execute("SELECT * FROM NEWS ORDER BY ROWID DESC")
 
     for row in c:
         title, bullets, url, date = row[0], row[1], row[2], row[3]
