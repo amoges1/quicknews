@@ -44,7 +44,7 @@ def extract_article(url):
     # Not all articles have bullets
     if title and summary:
 
-        # convert summary into lists, switch quotes." to ". and remove last-index whitespace
+        # convert summary into lists, switch "endq." to "endq". and remove last-index whitespace
         listSummary = summary.getText().replace(".\"", "\".").split(".")[:-1]
         # remove/cleanse whitespaces in each bullet
         bullets = [ bullet.strip() for bullet in listSummary]
