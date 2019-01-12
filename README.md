@@ -14,10 +14,11 @@ A Python/SQLite3 program that web scrapes BI Technology, Finance, Strategy and P
     - bullets as ul tags with class="summary-list" or by indexing
     - date as div tags with class="byline-timestamp" and attribute "data-timestamp" or class="news-post-quotetime"
 
-The url for scraping the Technology section of BI website is: http://www.businessinsider.com/sai
-The url for scraping the Finance section of BI website is: https://www.businessinsider.com/clusterstock
-The url for scraping the Strategy section of BI website is: https://www.businessinsider.com/warroom
-The url for scraping the Politics section of BI website is: https://www.businessinsider.com/politics
+The urls for scraping the respective sections of BI website are: 
+    - Technology: http://www.businessinsider.com/sai
+    - Finance: https://www.businessinsider.com/clusterstock
+    - Strategy: https://www.businessinsider.com/warroom
+    - Politics: https://www.businessinsider.com/politics
 
 The program runs through the headlines of the various sections, retrieving its respective url to its article, from which the title and bullet summaries are extracted. With Bootstrap 4 and Jinja2, the articles are aggregated as cards in chronological order onto a single viewable page automatically opened. 
 
