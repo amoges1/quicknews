@@ -23,19 +23,22 @@
                 font-weight: bold;
                 font-size: larger;
             }
+            .badge {
+                font-size: medium;
+            }
         </style>
     </head>
     <body>
         <div class="jumbotron" style="background-color: #185f7d;">
             <div class="container">
                 <h1 class="text-white">QuickNews</h1>
-                <p class="text-white desc"> <em>Catch up on the latest Tech news from Business Insider!</em></p>
+                <p class="text-white desc"> <em>Catch up on the latest Tech, Finance, and Strategy news from Business Insider!</em></p>
             </div>
         </div>
-        <div class="container p-1">
+        <div class="container-fluid p-3">
             <div class="row">
                 {% for article in news %}
-                <div class="col-md-6">
+                <div class="col-md-6 col-lg-4">
                     <div class="card" style="margin-top:10px;">
                         <div class="card-header border-white">
                             <h4  class="title"><a href="{{ article.url }}" target="_blank">{{ article.title}}</a></h4>
@@ -43,7 +46,7 @@
                         <div class="card-body">
                             <ul class="card-text">
                                 {% if "Click above" not in article.bullets %}
-                                    {% for bullet in article.bullets.split(".") %}
+                                    {% for bullet in article.bullets.split("*") %}
                                         <li> {{ bullet }}</li>
                                     {% endfor %}
                                 {% else %}
@@ -52,6 +55,15 @@
                             </ul>
                         </div>
                         <div class="card-footer text-right">
+                            {% if "Technology" in article.tag %}
+                                <span class="badge badge-success"> <strong> {{ article.tag }} </strong></span>
+                            {% elif "Finance" in article.tag %}
+                                <span class="badge badge-danger"> <strong> {{ article.tag }} </strong></span>
+                            {% elif "Strategy" in article.tag %}
+                                <span class="badge badge-info"> <strong> {{ article.tag }} </strong></span>
+                            {% elif "Politics" in article.tag %}
+                                <span class="badge badge-secondary"> <strong> {{ article.tag }} </strong></span>
+                            {% endif %}
                             <span class="badge badge-warning"> <strong> {{ article.date }} </strong></span>
                         </div>
                     </div>
