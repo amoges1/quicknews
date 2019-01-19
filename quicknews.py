@@ -17,7 +17,7 @@ stra_tag='Strategy'
 pol_tag='Politics'
 
 class Article:
-    """Article contains title and bullets."""
+    '''Article contains title, bullets, date, url, tag'''
     def __init__(self, title, bullets, date, url, tag):
         self.title = title
         self.bullets = bullets
@@ -28,10 +28,8 @@ class Article:
     def getValues(self):
         return self.title, self.bullets, self.date, self.url, self.tag
 
-#
-# Return title, date, summary dependent on section. BI Market follows diff page format.
-#
 def getInfo(soup, url):
+    '''Return title, date, summary dependent on section. BI Market follows diff page format'''
     # starts with markets.business
     if url.startswith(mark_url):
         # strip beg/end whitespaces, escape apostrophes, hyphens w/ html code (for sql/viewing) of title
@@ -48,10 +46,9 @@ def getInfo(soup, url):
         summary = soup.find('ul', {'class':'summary-list'})
         return title, date, summary
 
-#
-# Extract an article's title, bullet summary, url, and published date   
-#
+
 def extract_article(url):
+    '''Extract an article's title, bullet summary, url, and published date'''
     # get website page
     res = requests.get(url)
     
@@ -68,10 +65,8 @@ def extract_article(url):
     except:
         return title, "Click above to learn more", date
 
-#
-# Import archived articles from sql database, table NEWS, DESC Order
-#
 def import_archive(conn):
+    '''Import archived articles from sql database, table NEWS, DESC Order'''
     c = conn.cursor()
     c.execute("SELECT * FROM NEWS ORDER BY DATE DESC")
 
@@ -85,10 +80,8 @@ def import_archive(conn):
 
     return news
 
-#
-# Insert web scraped articles into SQLite3 DB, Table News for archive
-#
 def archive_insert(conn, article):
+    '''Insert web scraped articles into SQLite3 DB, Table News for archive'''
     c = conn.cursor()
     strTitle, strBullets, date, url, tag = article.getValues()
     
@@ -98,23 +91,20 @@ def archive_insert(conn, article):
     c.execute(sql_query)
     conn.commit()
 
-#
-# Remove old articles from sql database
-# 
 def remove_archives(conn):
+    '''Remove old articles from sql database'''
     c = conn.cursor()
     c.execute("""DELETE FROM NEWS""")
     conn.commit()
-
-#
-# Create news table in sql database if none exists
-#        
+    
 def check_table(conn):
+    '''Create news table in sql database if none exists'''
     c = conn.cursor()
     sql_query = """CREATE TABLE IF NOT EXISTS NEWS (TITLE TEXT, SUMMARY TEXT, DATE TEXT, URL TEXT, TAG TEXT, UNIQUE(TITLE)) """
     c.execute(sql_query)
 
 def scrape_section(conn, url, tag):
+    '''Extract articles from BI <tag> page'''
      # setup webscrape
     res = requests.get(url)
     soup = BeautifulSoup(res.text, 'html.parser')
@@ -135,7 +125,7 @@ def scrape_section(conn, url, tag):
         archive_insert(conn, article)
 
 def display_content(news):
-
+    '''Load articles using news template'''
     # Jinja2 setup
     env = jinja2.Environment()
     env.loader = jinja2.FileSystemLoader(r'templates')
@@ -152,10 +142,8 @@ def display_content(news):
     # open new file filled with articles
     webbrowser.open('article.html')
 
-#
-# Driver function to retrieve articles from BI Tech page
-#     
 def scrape_tech_insider():
+    '''Driver function to retrieve articles from BI Tech/Finance/Strategy/Politics page'''
     # create/connect to Archive database
     conn = sqlite3.connect('static/archive.db')
     
