@@ -159,7 +159,7 @@ def scrape_tech_insider():
     scrape_section(conn, fin_url, fin_tag)
     print("Retrieving strategy articles...")
     scrape_section(conn, stra_url, stra_tag)
-    print("Retrieving politic articles...")
+    print("Retrieving politics articles...")
     scrape_section(conn, pol_url, pol_tag)
     
     # import archived articles

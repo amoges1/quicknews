@@ -26,6 +26,14 @@
             .badge {
                 font-size: medium;
             }
+            .jumbotron {
+                border-radius: 0;
+                margin-bottom: 0
+            }
+            .nav-link {
+                font-size: larger;
+                font-weight: 600;
+            }
         </style>
     </head>
     <body>
@@ -35,13 +43,22 @@
                 <p class="text-white desc"> <em>Catch up on the latest Tech, Finance, and Strategy news from Business Insider!</em></p>
             </div>
         </div>
+        <div>
+            <ul class="nav nav-pills nav-justified">
+                <li class="nav-item badge-primary"><a class="nav-link">All</a></li>
+                <li class="nav-item badge-success"><a class="nav-link">Technology</a></li>
+                <li class="nav-item badge-danger"><a class="nav-link">Finance</a></li>
+                <li class="nav-item badge-info"><a class="nav-link">Strategy</a></li>
+                <li class="nav-item badge-secondary"><a class="nav-link">Politics</a></li>
+            </ul>
+        </div>
         <div class="container-fluid p-3">
             <div class="row">
                 {% for article in news %}
-                <div class="col-md-6 col-lg-4">
+                <div class="col-md-6 col-lg-4 {{ article.tag }}">
                     <div class="card" style="margin-top:10px;">
                         <div class="card-header border-white">
-                            <h4  class="title"><a href="{{ article.url }}" target="_blank">{{ article.title}}</a></h4>
+                            <h4  class="title"><a href="{{ article.url }}" target="_blank">{{ article.title }}</a></h4>
                         </div>
                         <div class="card-body">
                             <ul class="card-text">
@@ -76,8 +93,48 @@
         <footer  style=" left: 0; bottom: 0; width: 100%;  background-color: #185f7d; color: white; text-align: center;">
             <p style="margin:0;">This is a personal project made for fun. All Respective icons and service(s) belong to Respective owners.</p>
         </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    
+        <script>
+            $(".nav-item").click(function() {
+                switch (this.classList[1]) {
+                    case "badge-success":
+                        //show only technology
+                        $(".Technology").show()
+                        $(".Finance").hide()
+                        $(".Strategy").hide()
+                        $(".Politics").hide()
+                        break;
+                    case "badge-danger":
+                        //show only finance
+                        $(".Technology").hide()
+                        $(".Finance").show()
+                        $(".Strategy").hide()
+                        $(".Politics").hide()
+                        break;
+                    case "badge-info":
+                        //show only strategy
+                        $(".Technology").hide()
+                        $(".Finance").hide()
+                        $(".Strategy").show()
+                        $(".Politics").hide()
+                        break;
+                    case "badge-secondary":
+                        //show only politics
+                        $(".Technology").hide()
+                        $(".Finance").hide()
+                        $(".Strategy").hide()
+                        $(".Politics").show()
+                        break;
+                    default:
+                        //show all
+                        $(".Technology").show()
+                        $(".Finance").show()
+                        $(".Strategy").show()
+                        $(".Politics").show()
+                }
+            })
+        </script>
     </body>
 </html>
