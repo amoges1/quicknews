@@ -111,7 +111,7 @@ def scrape_section(conn, url, tag):
 
     # Find <a> headlines on BI Section Page
     if tag is 'Politics':
-        article_headlines = soup.find_all('a',{'analytics-module':'twocolumn-post_image'})
+        article_headlines = soup.find_all('a',{'data-analytics-module':'onecolumn-post_image'})
     else:
         article_headlines =  soup.find_all('a', { 'class':'title'}) 
     
