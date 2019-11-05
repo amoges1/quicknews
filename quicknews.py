@@ -4,7 +4,9 @@ import jinja2
 import sqlite3
 import dateutil.parser
 import webbrowser
+import mysql.connector
 
+business_insider_url="https://www.businessinsider.com"
 tech_url='https://www.businessinsider.com/sai'
 fin_url='https://www.businessinsider.com/clusterstock'
 stra_url='https://www.businessinsider.com/warroom'
@@ -36,11 +38,17 @@ def getInfo(soup, url):
         title = soup.find('h1', {'class':'article-title'}).getText(strip=True).replace("'", "&#39;").replace("’", "&#39;").replace("—", "&#8208;")
         date = soup.find('span', {'class':'news-post-quotetime'}).getText()
         # find <li> bullet points
-        summary = soup.find_all('ul')[2]
+        summary = soup.find('div', {'class':'news-content'}).find_all("li")
 
         return title, date, summary
     else:
+        print(url)
+        if soup.find('h1', {'class':'post-headline'}) is None:
+            title = soup.find('title').getText(strip=True).replace("'", "&#39;").replace("’", "&#39;").replace("—", "&#8208;")
+            return title, "0", "Click above to learn more"
+        
         title = soup.find('h1', {'class':'post-headline'}).getText(strip=True).replace("'", "&#39;").replace("’", "&#39;").replace("—", "&#8208;")
+
         # find timestamp in ISO 8601 format e.g. 2019-01-04T23:58:22+0000; remove timezone
         date = soup.find('div', {'class': 'byline-timestamp'})["data-timestamp"].split("+")[0]
         summary = soup.find('ul', {'class':'summary-list'})
@@ -74,8 +82,11 @@ def import_archive(conn):
     # Export news from sql archive db in chronological order
     for row in c:
         title, bullets, dateISO, url, tag = row[0], row[1], row[2], row[3], row[4]
-        date = dateutil.parser.parse(dateISO) # convert ISO into datetime object
-        article = Article(title, bullets, date, url, tag)
+        if dateISO is "0":
+            article = Article(title, bullets, dateISO, url, tag) #was date?
+        else:
+            date = dateutil.parser.parse(dateISO) # convert ISO into datetime object
+            article = Article(title, bullets, date, url, tag)
         news.append(article)
 
     return news
@@ -103,23 +114,22 @@ def check_table(conn):
     sql_query = """CREATE TABLE IF NOT EXISTS NEWS (TITLE TEXT, SUMMARY TEXT, DATE TEXT, URL TEXT, TAG TEXT, UNIQUE(TITLE)) """
     c.execute(sql_query)
 
-def scrape_section(conn, url, tag):
+def scrape_section(conn, prefix_url, tag):
     '''Extract articles from BI <tag> page'''
-     # setup webscrape
-    res = requests.get(url)
+    # setup webscrape
+    res = requests.get(prefix_url)
     soup = BeautifulSoup(res.text, 'html.parser')
 
     # Find <a> headlines on BI Section Page
-    if tag is 'Politics':
-        article_headlines = soup.find_all('a',{'data-analytics-module':'onecolumn-post_image'})
-    else:
-        article_headlines =  soup.find_all('a', { 'class':'title'}) 
+    article_headlines =  soup.find_all('a', { 'class':'tout-title-link'}) 
     
     # Extract urls of respective <a> headlines
     article_urls = [ a['href'] for a in article_headlines]
   
     # insert articles into sql archive db
     for url in article_urls:
+        if "https" not in url:
+            url = business_insider_url + url
         title, bullets, date = extract_article(url)
         article = Article(title, bullets, date, url, tag)
         archive_insert(conn, article)
@@ -152,14 +162,16 @@ def scrape_tech_insider():
 
     # remove old articles
     remove_archives(conn)
+    print("Begin scraping Business Insider")
+    print("===============================")
     
-    print("Retrieving tech articles...")
+    print("Retrieving Technology articles...")
     scrape_section(conn, tech_url, tech_tag)
-    print("Retrieving finance articles...")
+    print("Retrieving Finance articles...")
     scrape_section(conn, fin_url, fin_tag)
-    print("Retrieving strategy articles...")
+    print("Retrieving Strategy articles...")
     scrape_section(conn, stra_url, stra_tag)
-    print("Retrieving politics articles...")
+    print("Retrieving Politics articles...")
     scrape_section(conn, pol_url, pol_tag)
     
     # import archived articles
