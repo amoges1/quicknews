@@ -1,0 +1,19 @@
+{
+  "name": "quicknews",
+  "version": "1.0.0",
+  "description": "web application to retrieve, store and bookmark summarized BI articles ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/amoges1/quicknews.git"
+  },
+  "author": "Anteneh Moges",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://gitlab.com/amoges1/quicknews/issues"
+  },
+  "homepage": "https://gitlab.com/amoges1/quicknews#readme"
+}

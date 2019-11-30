@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Welcome</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous" />
+</head>
+
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        
+        <!-- Toggler/collapsibe Button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <!-- Navbar links -->
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav text-center">
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#signUp"> Sign Up</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#" data-toggle="modal" data-target="#login"> Login</a>
+                </li>
+            </ul>
+        </div>
+        <!-- Brand -->
+        <a class="navbar-brand text-white">QuickNews</a>
+
+    </nav>
+    <!-- Navigation End -->
+
+    <!-- Sign Up -->
+    <div class="modal" id="signUp">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Sign Up Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Create Account</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div> <!-- Sign Up Header -->
+                <!-- Sign Up Body -->
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="signUsername">Username</label>
+                            <input type="text" class="form-control" name="signUsername" id="signUsername">
+                        </div>
+                        <div class="form-group">
+                            <label for="signPassword">Password</label>
+                            <input type="password" class="form-control" name="signPassword" id="signPassword">
+                        </div>
+                        <div class="form-group">
+                            <label for="cpassword">Confirm Password</label>
+                            <input type="password" class="form-control" name="cpassword" id="cpassword">
+                        </div>
+                        <div class="form-group m-0 text-right">
+                            <button type="submit" class="btn btn-primary">Sign Up</button>
+                        </div>
+                    </form>
+                </div> <!-- Sign Up Body -->               
+            </div>
+        </div>
+    </div> <!-- Sign Up Modal -->
+
+    <!-- Login Modal -->
+    <div class="modal" id="login">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Login Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Login</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div> <!-- Login Header -->
+                
+                <!-- Login Body -->
+                <div class="modal-body">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <label for="loginUsername">Username</label>
+                            <input type="text" class="form-control" name="loginUsername" id="loginUsername">
+                        </div>
+                        <div class="form-group">
+                            <label for="loginPassword">Password</label>
+                            <input type="password" class="form-control" name="loginPassword" id="loginPassword">
+                        </div>
+                        <div class="form-group m-0 text-right">
+                            <button type="submit" class="btn btn-primary" >Sign in</button>
+                        </div>
+                    </form>                
+                </div> <!-- Login Body -->
+            </div>    
+        </div>
+    </div> <!-- Login Modal -->
+    
+    <!-- Jumbotron Headliner -->
+    <div class="jumbotron jumbotron-fluid" style="background-color: #185f7d;">
+        <div class="container text-center">
+            <h1 class="text-white" style="font-size: 7.5rem;">Quick News</h1>
+            <p class="text-white center">
+                <em>Catch up on the latest Tech, Finance, and Strategy news from
+                    Business Insider!</em>
+            </p>
+        </div>
+    </div> <!-- Jumbotron Headliner -->
+
+    <!-- Create an Account -->
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="container d-flex justify-content-center col-md-6 text-center" >
+                <h1 class="align-self-center">Features
+                    <p class="lead">Create an account to enjoy these benefits. </p>
+                </h1>
+            </div>
+            <div class="container d-flex justify-content-around col-md-6 text-center">
+                <div>
+                    <img src="https://img.icons8.com/wired/64/000000/news.png">  
+                    <h5 class="align-self-center">Review trending news</h5>
+                </div>
+                <div> 
+                    <img src="https://img.icons8.com/wired/64/000000/save.png">
+                    <h5 class="align-self-center">Save articles later</h5>
+                </div>
+                <div>
+                    <img src="https://img.icons8.com/wired/64/000000/meeting.png">
+                    <h5 class="align-self-center">Share with friends</h5>
+                </div>
+            </div>
+        </div>
+    </div>  <!-- Create an Account -->
+
+    <!-- Article Template -->
+    <div class="container-fluid p-4" style="background-color: #f5f5f5;">
+        <div class="row">
+            <div class="container d-flex justify-content-center col-md-6 text-center">
+                <h1 class="align-self-center"> Reading News
+                    <p class="lead">All articles are presented with minimum information.</p>
+                </h1>
+            </div>
+            <div class="container d-flex justify-content-center col-md-6 ">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <!-- Article Header -->
+                        <div class="modal-header" style="background-color: #185f7d;">
+                            <h4 class="modal-title text-white">Article Title</h4>
+                        </div>
+    
+                        <!-- Article Body -->
+                        <div class="modal-body">
+                            <ul class="list">
+                                <li class="list-items">Lorem, ipsum dolor sit amet. </li>
+                                <li class="list-items">Click on title to learn more.</li>
+                            </ul>
+                        </div>
+    
+                        <!-- Article Footer -->
+                        <div class="modal-footer">
+                            <span class="badge badge-danger"><strong> Finance </strong></span>
+                            <span class="badge badge-warning">
+                                <strong> 2019-11-04 11:54:00 </strong></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>      
+    </div>  <!-- Article Template -->
+
+    <!-- Filter by Topics -->
+    <div class="container-fluid p-4">
+        <div class="row">
+            <div class="container d-flex justify-content-center col-md-6 text-center">
+                <h1 class="align-self-center"> Filter By Topics
+                    <p class="lead">Sort articles among these different sections.</p>
+                </h1>
+            </div> 
+            <div class="container d-flex justify-content-around col-md-6 text-center">
+                <div>
+                    <img src="https://img.icons8.com/wired/64/000000/computer.png">
+                    <h5 class="align-self-center"> Technology </h5>
+                </div>                
+                <div> 
+                    <img src="https://img.icons8.com/wired/64/000000/duration-finance.png">
+                    <h5 class="align-self-center"> Finance </h5>
+                </div>
+                <div>
+                    <img src="https://img.icons8.com/wired/64/000000/strategy-board.png">
+                    <h5 class="align-self-center"> Strategy </h5>
+                </div>
+                <div>
+                    <img src="https://img.icons8.com/wired/64/000000/parliament.png">
+                    <h5 class="align-self-center"> Politics </h5>
+                </div>
+            </div>      
+        </div>    
+    </div>    <!-- Filter by Topics -->
+
+    <div class="container-fluid p-4">
+        <footer style=" left: 0; bottom: 0; width: 100%;  background-color:  #185f7d; color: white; text-align: center; position: fixed">
+            <p style="margin:0;">This is a personal project made for fun. All Respective icons and service(s) belong to Respective owners.</p>
+        </footer>
+    </div>
+    <!-- jQuery library -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+    </script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>

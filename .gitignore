@@ -2,3 +2,4 @@ article.html
 templates/desktop.ini
 __pycache__
 static/archive.db
+/quicknews2.0/node_modules/
