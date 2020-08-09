@@ -24,4 +24,8 @@ The program runs through the headlines of the various sections, retrieving its r
 
 With Power of Python, running "python quicknews.py" starts the fun...
 
+![image](https://user-images.githubusercontent.com/17581500/89742023-393b6500-da64-11ea-9aac-8a12d2f92c1a.png)
+
+![image](https://user-images.githubusercontent.com/17581500/89742004-0f823e00-da64-11ea-91d0-2717ff5891c5.png)
+
 "This is a personal project made for fun. All Respective icons and service(s) belong to Respective owners."
